@@ -1,7 +1,6 @@
 Members:
-1.Rima
-2.Shima
-3.Karim
-4.Rahim
-5.Alex
-6.Jarina
+1.Shima
+2.Karim
+3.Rahim
+4.Alex
+5.Jarina
