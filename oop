@@ -1,0 +1,119 @@
+abstract class LibraryItem{
+    private String itemId;
+    private String title;
+    private double price;
+
+    LibraryItem(String x,String y,double z){
+        itemId=x;
+        title=y;
+        price=z;
+    }
+    LibraryItem(String x,String y){
+        itemId=x;
+        title=y;
+    }
+    String getItemId(){
+        return itemId;
+    }
+    String getTitle(){
+        return title;
+    }
+    double getPrice(){
+        return price;
+    }
+    void setPrice(double x){
+        price=x;
+    }
+    void setPrice(double x,int y){
+        price=x-x*y/100;
+    }
+    void displayInfo(){
+        System.out.println(itemId+title+price);
+    }
+    abstract String getItemType();
+
+}
+
+
+interface Borrowable{
+    void borrow(String memberId);
+    void returnItem();
+}
+
+
+
+class Book extends LibraryItem implements Borrowable{
+    private String author;
+    Book(String p,String q,double r,String s){
+        super(p,q,r);
+        author=s;
+    }
+    String getAuthor(){
+        return author;
+    }
+    void setAuthor(String x){
+        author=x;
+    }
+    void displayInfo(){
+        System.out.println(getPrice()+" "+author);
+    }
+    public void borrow(String memberId){
+        System.out.println("Borrowed by "+ memberId);
+    }
+    public void returnItem(){
+        System.out.println(getTitle()+ " is returned");
+    }
+    String getItemType(){
+        return "book";
+    }
+}
+
+
+class Newspaper extends LibraryItem{
+    private String publicationDate;
+    Newspaper(String p,String q,double r,String s){
+        super(p,q,r);
+        publicationDate=s;
+    }
+    String getPublicationDate(){
+        return publicationDate;
+    }
+    void setPublicationDate(String x){
+        publicationDate=x;
+    }
+    void displayInfo(){
+        System.out.println(publicationDate);
+    }
+    String getItemType(){
+        return "Newspaper";
+    }
+}
+
+
+
+
+public class Try{
+    public static void main(String[] args){
+        Book b=new Book("b101","Gitanjali",250,"Rabindranath");
+        Newspaper n=new Newspaper("n202","ProthomAlo",20,"7th September");
+        System.out.println(b.getAuthor());
+        b.setAuthor("Kazi Nazrul");
+        b.displayInfo();
+        b.borrow("A43");
+        b.returnItem();
+        b.setPrice(200);
+        System.out.println(b.getPrice());
+
+        b.setPrice(280,10);
+        System.out.println(b.getPrice());
+
+        System.out.println(b.getItemType());
+
+
+        System.out.println(n.getPublicationDate());
+        n.setPublicationDate("8th September");
+        n.displayInfo();
+        System.out.println(n.getItemType());
+
+    }
+}
